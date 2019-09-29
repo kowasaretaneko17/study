@@ -16,7 +16,7 @@ public class Server {
     public static void main(String[] args){
         try {
             System.out.println("【服务端：】服务端启动！");
-            ServerSocket server = new ServerSocket(8080);
+            ServerSocket server = new ServerSocket(60000);
             Socket socket = server.accept();
             System.out.println("【服务端：】监听到客户端连接！"+socket.getInetAddress());
             //读取数据流
@@ -24,9 +24,10 @@ public class Server {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            while(bufferedReader.readLine()!=null){
-                System.out.println("【服务端：】读取客户端信息：");
-                System.out.println(bufferedReader.readLine());
+            String info = bufferedReader.readLine();
+            if(info!=null){
+                System.out.println("【服务端：】读取客户端信息————：");
+                System.out.println(info);
             }
 
             //回复消息

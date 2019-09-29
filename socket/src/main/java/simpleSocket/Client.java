@@ -16,7 +16,7 @@ import java.net.Socket;
 public class Client {
     public static void main(String[] args){
         try {
-            Socket socket = new Socket("127.0.0.1",8080);
+            Socket socket = new Socket("127.0.0.1",60000);
             //发送信息流
             OutputStream outputStream = socket.getOutputStream();
             PrintWriter printWriter = new PrintWriter(outputStream);
@@ -32,9 +32,10 @@ public class Client {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
-            while(bufferedReader.readLine()!=null){
-                System.out.println("【客户端：】读取服务端消息：");
-                System.out.println(bufferedReader.readLine());
+            String info  = bufferedReader.readLine();
+            if(info!=null){
+                System.out.println("【客户端：】读取服务端消息————：");
+                System.out.println(info);
             }
             //关闭所有流
             bufferedReader.close();
